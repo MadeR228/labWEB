@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра з картинками</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/images.css"/>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='/'">
+        <i class="fas fa-arrow-left"></i><b>Меню</b>
+    </button>
+
+    <div class="game-container">
+        <div class="timer" id="timer">90</div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress">
+                    <div class="progress-left" id="progress-left"></div>
+                    <div class="progress-right" id="progress-right"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="game-field" id="gameField"></div>
+
+            <div class="current-image-container">
+                <img id="currentImage" class="current-image" alt="" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" draggable="false">
+                <div class="controls">
+                    <button id="restartButton">Почати з початку</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="startGameModal">
+            <div class="modal">
+                <h2>Почнемо гру?</h2>
+                <p>У вас є 90 секунд, щоб знайти збіги всіх картинок</p>
+                <p>Для початку гри виберіть тему:</p>
+                <div class="modal-buttons">
+                    <div class="category-selector">
+                        <button class="category-button" data-category="animals">Тварини</button>
+                        <button class="category-button" data-category="insects">Комахи</button>
+                        <button class="category-button" data-category="fish">Риби</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-overlay" id="restartGameModal">
+            <div class="modal">
+                <button class="close-button" id="closeRestartModal">×</button>
+                <h2>Вибрати нову тему?</h2>
+                <p>Поточна гра буде завершена!</p>
+                <div class="modal-buttons">
+                    <div class="category-selector">
+                        <button class="category-button restart-category" data-category="animals">Тварини</button>
+                        <button class="category-button restart-category" data-category="insects">Комахи</button>
+                        <button class="category-button restart-category" data-category="fish">Риби</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="winModal">
+            <div class="modal">
+                <h2>Вітаємо!</h2>
+                <p>Ви успішно завершили гру!</p>
+                <p>Час: <span id="winTime"></span> секунд</p>
+                <p>Спроби: <span id="winAttempts"></span></p>
+                <div class="modal-buttons">
+                    <button class="modal-button yes" onclick="startNewGame()">Зіграти ще раз</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="timeOutModal">
+            <div class="modal">
+                <h2>Час вийшов!</h2>
+                <p>Хочете спробувати ще раз?</p>
+                <div class="modal-buttons">
+                    <button class="modal-button yes" onclick="startNewGame()">Почати знову</button>
+                    <button class="modal-button no" onclick="window.location.href='/'">Вийти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/images.js"></script>
+</body>
+</html>
