@@ -140,7 +140,6 @@ function startTimer() {
     if (gameActive = true) {
         isPaused = false;
     }
-    ;
 
     if (gameTimer) {
         clearInterval(gameTimer);
