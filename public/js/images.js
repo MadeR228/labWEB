@@ -66,7 +66,7 @@ let currentCategory = "animals";
 let gameImages = [];
 let matchedImages = 0;
 let gameTimer;
-let timeLeft = 60;
+let timeLeft = 90;
 let attempts = 0;
 let gameActive = false;
 let isPaused = true;
