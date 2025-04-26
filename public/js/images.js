@@ -156,7 +156,11 @@ function selectNewCurrentImage() {
     const randomIndex = Math.floor(Math.random() * remainingImages.length);
     const selectedImage = remainingImages[randomIndex];
 
-    $('#currentImage').attr('src', selectedImage).data('image', selectedImage);
+    $('#currentImage').fadeOut(200, function () {
+        $(this).attr('src', selectedImage)
+            .data('image', selectedImage)
+            .fadeIn(200);
+    });
 }
 
 function initClickedSelection() {
@@ -206,19 +210,15 @@ function initClickSelection() {
 
             attempts++;
 
-            // Remove highlighting
             $('.game-cell').removeClass('clickable');
             $('#currentImage').removeClass('selected');
 
             if (currentImage === targetImage) {
-                // Correct match
                 $(this).addClass('correct');
                 matchedImages++;
 
-                // Select a new current image
                 setTimeout(selectNewCurrentImage, 500);
             } else {
-                // Wrong match - show brief indication
                 $(this).addClass('wrong-flash');
                 setTimeout(() => {
                     $(this).removeClass('wrong-flash');
@@ -228,7 +228,6 @@ function initClickSelection() {
     });
 }
 
-// Start the timer
 function startTimer() {
     timeLeft = 90;
 
@@ -290,7 +289,6 @@ function updateProgressBar(value) {
     $('.progress-bar').css('background-color', progressColor);
 }
 
-// Shuffle an array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -299,49 +297,39 @@ function shuffleArray(array) {
     return array;
 }
 
-// Show the game start modal
 function showStartGameModal() {
     $('#startGameModal').css('display', 'flex');
     gameActive = false;
     isPaused = true;
 }
 
-// Show the restart game modal
 function showRestartGameModal() {
     $('#restartGameModal').css('display', 'flex');
-    // Приостанавливаем игру
     isPaused = true;
 }
 
-// Close the restart modal and resume the game
 function closeRestartModal() {
-    // Скрываем модальное окно перезапуска
     $('#restartGameModal').css('display', 'none');
     
-    // Возобновляем игру
     if (gameImages.length > 0) {
         gameActive = true;
         isPaused = false;
     }
 }
 
-// Show the win modal
 function showWinModal() {
     $('#winTime').text(timeUsed);
     $('#winAttempts').text(attempts);
     $('#winModal').css('display', 'flex');
 }
 
-// Show the time-out modal
 function showTimeOutModal() {
     isPaused = true;
     clearInterval(progressInterval);
     $('#timeOutModal').css('display', 'flex');
 }
 
-// Исправляем функцию startNewGame
 function startNewGame() {
-    // Остановить все таймеры и сбросить состояние
     if (gameTimer) {
         clearInterval(gameTimer);
     }
@@ -349,50 +337,39 @@ function startNewGame() {
         clearInterval(progressInterval);
     }
     
-    // Сбросить флаги состояния игры
     gameActive = false;
     isPaused = true;
     
-    // Закрыть все модальные окна
     $('.modal-overlay').css('display', 'none');
     
-    // Показать модальное окно выбора категории
     $('#startGameModal').css('display', 'flex');
 }
 
-// Исправляем функцию startGame
 function startGame(event) {
-    // Останавливаем распространение события (чтобы избежать двойных вызовов)
     if (event) {
         event.preventDefault();
         event.stopPropagation();
         
-        // Получаем выбранную категорию из кнопки
         currentCategory = $(event.target).data('category');
     }
     
-    // Закрываем все модальные окна
     $('.modal-overlay').css('display', 'none');
     
-    // Сбрасываем состояние игры
     attempts = 0;
     matchedImages = 0;
     timeUsed = 0;
     selectedCell = null;
     gameActive = true;
     
-    // Запускаем игру с выбранной категорией
     initGame();
 }
 
-// Додаємо обробники подій для кнопок категорій
 $(document).ready(function () {
     $('.category-button').click(function (event) {
         startGame(event);
     });
 });
 
-// Function called when the game is won
 function gameWon() {
     gameActive = false;
     isPaused = true;
