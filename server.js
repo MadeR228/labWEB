@@ -3,22 +3,22 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname + "/public/"));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'main.html'));
+    res.sendFile(path.join(__dirname, "public",'main.html'));
 });
 
 app.get('/guess-number', (req, res) => {
-    res.sendFile(path.join(__dirname, 'numbers.html'));
+    res.sendFile(path.join(__dirname, "public", 'numbers.html'));
 });
 
 app.get('/sequence', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sequence.html'));
+    res.sendFile(path.join(__dirname, "public", 'sequence.html'));
 });
 
 app.get('/image', (req, res) => {
-    res.sendFile(path.join(__dirname, 'images.html'));
+    res.sendFile(path.join(__dirname, "public", 'images.html'));
 });
 
 app.use((req, res) => {
