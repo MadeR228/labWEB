@@ -156,8 +156,7 @@ function selectNewCurrentImage() {
     const randomIndex = Math.floor(Math.random() * remainingImages.length);
     const selectedImage = remainingImages[randomIndex];
 
-    $('#currentImage').attr('src', selectedImage);
-    $('#currentImage').data('image', selectedImage);
+    $('#currentImage').attr('src', selectedImage).data('image', selectedImage);
 }
 
 function initClickedSelection() {

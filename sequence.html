@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послідовність чисел</title>
+    <link rel="stylesheet" href="css/sequence.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='/'">
+        <i class="fas fa-arrow-left"></i><b>Меню</b>
+    </button>
+
+    <div class="game-container">
+        <div class="timer" id="timer">60</div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress">
+                    <div class="progress-left" id="progress-left"></div>
+                    <div class="progress-right" id="progress-right"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-field" id="gameField"></div>
+
+        <div class="controls">
+            <button id="restartButton">Перезапустити</button>
+        </div>
+
+        <div class="stats">
+            <h2>Статистика</h2>
+            <table id="statsTable">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Час</th>
+                        <th>Помилки</th>
+                    </tr>
+                </thead>
+                <tbody id="statsBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="errorModal">
+        <div class="modal">
+            <h2>Не вірна цифра</h2>
+            <p>Спробуйте ще раз!</p>
+            <div class="modal-buttons">
+                <button class="modal-button yes" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="winModal">
+        <div class="modal">
+            <h2>Вітаємо!</h2>
+            <p>Ви успішно завершили гру!</p>
+            <p>Час: <span id="winTime"></span> секунд</p>
+            <p>Помилок: <span id="winAttempts"></span></p>
+            <div class="modal-buttons">
+                <button class="modal-button yes" onclick="startNewGame()">Зіграти ще раз</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="startGameModal">
+        <div class="modal">
+            <h2>Почнемо гру?</h2>
+            <p>У вас є 60 секунд, щоб знайти всі числа від 1 до 20</p>
+            <div class="modal-buttons">
+                <button class="modal-button yes" onclick="startGame()">Почати</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="timeOutModal">
+        <div class="modal">
+            <h2>Час вийшов!</h2>
+            <p>Хочете спробувати ще раз?</p>
+            <div class="modal-buttons">
+                <button class="modal-button yes" onclick="startNewGame()">Почати знову</button>
+                <button class="modal-button no" onclick="window.location.href='/'">Вийти</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/sequence.js"></script>
+</body>
+</html> 
